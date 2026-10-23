@@ -234,14 +234,14 @@ function Calculator() {
                 <span>{inr(4000)} plans sold</span>
                 <span>{small}</span>
               </div>
-              <Slider className="mt-3" value={[small]} max={30} step={1} onValueChange={(v) => setSmall(v[0])} />
+              <Slider className="mt-3" value={[small]} max={30} step={1} onValueChange={(v) => setSmall(v[0] ?? 0)} />
             </div>
             <div>
               <div className="flex justify-between text-sm font-semibold text-charcoal">
                 <span>{inr(8000)} plans sold</span>
                 <span>{big}</span>
               </div>
-              <Slider className="mt-3" value={[big]} max={30} step={1} onValueChange={(v) => setBig(v[0])} />
+              <Slider className="mt-3" value={[big]} max={30} step={1} onValueChange={(v) => setBig(v[0] ?? 0)} />
             </div>
           </div>
         </div>
@@ -346,7 +346,7 @@ const emptyForm: FormState = {
 function ApplySection() {
   const submit = useServerFn(submitApplication);
   const [form, setForm] = useState<FormState>(emptyForm);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [loading, setLoading] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -356,8 +356,8 @@ function ApplySection() {
     e.preventDefault();
     const parsed = applicationSchema.safeParse(form);
     if (!parsed.success) {
-      const errs: Record<string, string> = {};
-      for (const issue of parsed.error.issues) errs[String(issue.path[0])] ??= issue.message;
+      const errs: Partial<Record<keyof FormState, string>> = {};
+      for (const issue of parsed.error.issues) errs[issue.path[0] as keyof FormState] ??= issue.message;
       setErrors(errs);
       toast.error("Please fix the highlighted fields");
       return;
