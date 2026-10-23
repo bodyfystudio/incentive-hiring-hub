@@ -135,7 +135,7 @@ function Hero() {
           />
           <div className="absolute -bottom-6 -left-4 rounded-2xl bg-charcoal p-5 text-charcoal-foreground shadow-soft md:-left-10">
             <p className="text-xs uppercase tracking-widest opacity-70">Earn up to</p>
-            <p className="font-display text-3xl font-extrabold text-primary">{inr(25000)}+</p>
+            <p className="font-display text-3xl font-extrabold text-primary">{inr(25000)}</p>
             <p className="text-xs opacity-70">a month with 20 premium sales</p>
           </div>
         </div>
