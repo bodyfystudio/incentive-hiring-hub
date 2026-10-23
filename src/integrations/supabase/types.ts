@@ -14,7 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      caller_applications: {
+        Row: {
+          accepted_commission_only: boolean
+          age: number | null
+          availability: string
+          city: string
+          created_at: string
+          email: string | null
+          experience: string
+          full_name: string
+          has_setup: boolean
+          hours_per_day: string | null
+          id: string
+          languages: string
+          phone: string
+          why_suitable: string | null
+        }
+        Insert: {
+          accepted_commission_only?: boolean
+          age?: number | null
+          availability: string
+          city: string
+          created_at?: string
+          email?: string | null
+          experience: string
+          full_name: string
+          has_setup?: boolean
+          hours_per_day?: string | null
+          id?: string
+          languages: string
+          phone: string
+          why_suitable?: string | null
+        }
+        Update: {
+          accepted_commission_only?: boolean
+          age?: number | null
+          availability?: string
+          city?: string
+          created_at?: string
+          email?: string | null
+          experience?: string
+          full_name?: string
+          has_setup?: boolean
+          hours_per_day?: string | null
+          id?: string
+          languages?: string
+          phone?: string
+          why_suitable?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
